@@ -111,7 +111,7 @@ class Avatar
         });
     }
 
-    public function save($path, $quality = 90)
+    public function save($fileName, $quality = 90)
     {
         $this->buildAvatar();
 
