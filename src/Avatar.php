@@ -12,6 +12,8 @@ class Avatar
 {
     protected $name;
 
+    protected $disk;
+
     protected $chars;
     protected $shape;
     protected $width;
@@ -57,6 +59,7 @@ class Avatar
         $this->ascii = Arr::get($config, 'ascii', false);
         $this->borderSize = Arr::get($config, 'border.size');
         $this->borderColor = Arr::get($config, 'border.color');
+        $this->disk = Arr::get($config, 'disk');
 
         $this->cache = $cache;
         $this->initialGenerator = $initialGenerator->setUppercase(Arr::get($config, 'uppercase'));
@@ -112,7 +115,7 @@ class Avatar
     {
         $this->buildAvatar();
 
-        return $this->image->save($path, $quality);
+        return \Illuminate\Support\Facades\Storage::disk($this->disk)->put($fileName, $this->image->encode(null, $quality)->__toString());
     }
 
     public function setBackground($hex)
