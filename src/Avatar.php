@@ -87,6 +87,7 @@ class Avatar
         $this->theme = $config['theme'] ?? null;
         $this->defaultTheme = $this->validateConfig($config);
         $this->applyTheme($this->defaultTheme);
+        $this->disk = $config['disk'];
 
         // Add any additional themes for further use
         $themes = $this->resolveTheme('*', $config['themes'] ?? []);
